@@ -7,6 +7,9 @@
 <body>
 <h1>Главная страница</h1>
 <hr>
+<a href="/accounts/login/">Войти |</a>
+<a href="/accounts/logout/">Выйти</a>
+<hr>
 <form action="search" method="POST">
     {% csrf_token %}
     <input type="text" name="search_product">

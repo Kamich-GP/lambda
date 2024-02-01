@@ -12,6 +12,7 @@
     {% csrf_token %}
     <button type="submit">Выйти</button>
 </form>
+<a href="/cart">Корзина</a>
 {% else %}
 <form action="register" method="post">
     {% csrf_token %}

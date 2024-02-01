@@ -4,6 +4,7 @@ from .models import Product, Category, Cart
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.views import View
+from .handlers import bot
 
 
 # Create your views here.
@@ -82,7 +83,17 @@ def get_user_cart(request):
     # Вся инфа о корзине пользователя
     cart = Cart.objects.filter(user_id=request.user.id)
 
-    # Отправить данные на фрон
+    if request.method == 'POST':
+        text = 'Новый заказ!\n\n'
+
+        for i in cart:
+            text += f'Название товара: {i.user_product}\n' \
+                    f'Количество: {i.user_product_quantity}\n\n'
+            bot.send_message(-4161536836, text)
+            cart.delete()
+            return redirect('/')
+
+    # Отправить данные на фронт
     context = {'cart': cart}
     return render(request, 'cart.html', context)
 

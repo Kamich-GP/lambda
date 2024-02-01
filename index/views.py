@@ -20,7 +20,7 @@ def home(request):
     context = {'form': search_bar,
                'product': product_info,
                'category': category_info}
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 
 # Вывод товаров по категории
@@ -29,7 +29,7 @@ def get_full_category(request, pk):
     products = Product.objects.filter(category_name=category)
     # Отправляем данные на фронт
     context = {'products': products}
-    return render(request, 'category.html', context)
+    return render(request, 'exact_category.html', context)
 
 
 # Вывод информации о конкретном продукте
@@ -37,7 +37,7 @@ def get_full_product(request, pk):
     product = Product.objects.get(id=pk)
     # Отправляем данные на фронт
     context = {'product': product}
-    return render(request, 'product.html', context)
+    return render(request, 'exact_product.html', context)
 
 
 # Отображение страницы о нас
@@ -95,7 +95,7 @@ def get_user_cart(request):
 
     # Отправить данные на фронт
     context = {'cart': cart}
-    return render(request, 'cart.html', context)
+    return render(request, 'user_cart.html', context)
 
 
 # Удаление товара из корзины
